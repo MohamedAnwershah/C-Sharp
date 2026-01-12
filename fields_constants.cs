@@ -1,7 +1,7 @@
 
 
 
-public class Program {
+public class fields_constants {
 	public static void Main() {
 		Octopus oct1 = new(10);
 
