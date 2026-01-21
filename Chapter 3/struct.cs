@@ -18,6 +18,7 @@ class Program{
 
 class RefPoint{
 	public int X;
+	public string Name;
 }
 struct StructPoint{
 	public int X;
