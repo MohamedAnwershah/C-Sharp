@@ -14,7 +14,7 @@ Print: Output the numbers. (Expected: 4, 5, 6). */
 
 using System;
 
-class Program
+class Program 
 {
 	static void Main()
 	{
@@ -23,6 +23,6 @@ class Program
         var pages = results.Distinct().Skip(3).Take(3);
 
         string result = String.Join(", ", pages);
-        Console.WriteLine(result);
+        Console.WriteLine( result);
 	}	
 }
