@@ -39,7 +39,7 @@ class Program
         var combined = customers.Join(orders, c => c.Id, o => o.CustomerId, (x, y) => new {Id = x.Id, Name = x.Name, Region = x.Region, Amount = y.Amount, OrderId = y.Id});
       
         
-        var result = combined.Where(n => n.Amount > 600).Select(n => $"{n.Name} bought something fo {n.Amount}");
+        var result = combined.Where(n => n.Amount > 600).Select(n => $"{n.Name} bought something for {n.Amount}");
         foreach ( var i in result)
         {
             Console.WriteLine(i);
