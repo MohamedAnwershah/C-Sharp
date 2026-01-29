@@ -40,6 +40,7 @@ Eve: No orders. */
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class Program {
     public static void Main() {
@@ -91,6 +92,66 @@ public class Program {
         
         // Goal: Generate a report of VIP Customers.
 
+
+        var deliveredOrders = from c in customers 
+        join o in orders
+        on c.Id equals o.CustomerId 
+        where o.Status == "Delivered" && o.Date.Year >= 2025 
+        select new 
+        {
+            c.Name, CustomerId = c.Id, OrderId = o.Id
+        };
         
+
+        var diversifiedOrders = from d in deliveredOrders 
+        join o in orderDetails 
+        on d.OrderId equals o.OrderId into Orders 
+        where Orders.Count() > 1 select new
+        {
+            d.Name, d.OrderId
+        };
+        
+        var v1 = from d in diversifiedOrders 
+        join o in orderDetails 
+        on d.OrderId equals o.OrderId 
+        select new 
+        {
+            d.Name, o.OrderId, o.ProductId, o.Quantity
+        };
+
+        var v2 = from v in v1 
+        join p in products 
+        on v.ProductId equals p.Id 
+        select new 
+        {
+            p.Category,
+            v.Name,
+            Sum = v.Quantity * p.Price
+            
+        };
+
+        
+        var v3 = v2.GroupBy(x => x.Name);
+        foreach (var i in v3)
+        {   
+            decimal totalSpend = i.Sum(x => x.Sum);
+
+            var topCategory = i.GroupBy(x => x.Category)
+            .Select(g => new
+            {
+                categoryName = g.Key,
+                categoryTotal = g.Sum(x => x.Sum)
+            })
+            .OrderByDescending(x => x.categoryTotal)
+            .First()
+            .categoryName;
+
+            if (totalSpend >= 1000)
+            {
+                Console.WriteLine($"Name : {i.Key}, Top Category : {topCategory}, Amount : {totalSpend}");
+            }
+        }
+        
+
     }
 }
