@@ -41,6 +41,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Data.SqlTypes;
 
 public class Program {
     public static void Main() {
@@ -132,10 +133,11 @@ public class Program {
 
         
         var v3 = v2.GroupBy(x => x.Name);
+        using StreamWriter sw = new("vip_report.txt");
         foreach (var i in v3)
-        {   
+        {
             decimal totalSpend = i.Sum(x => x.Sum);
-
+            int uniqueCategory = i.Select(x => x.Category).Distinct().Count();
             var topCategory = i.GroupBy(x => x.Category)
             .Select(g => new
             {
@@ -148,10 +150,11 @@ public class Program {
 
             if (totalSpend >= 1000)
             {
-                Console.WriteLine($"Name : {i.Key}, Top Category : {topCategory}, Amount : {totalSpend}");
+                sw.WriteLine($"Generated on : {DateTime.Now}");
+                sw.WriteLine($"Name : {i.Key}, Top Category : {topCategory}, Amount : {totalSpend}, Unique categories : {uniqueCategory}");
             }
         }
-        
+
 
     }
 }
