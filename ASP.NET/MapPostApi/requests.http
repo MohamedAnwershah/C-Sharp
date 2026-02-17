@@ -1,0 +1,7 @@
+POST http://localhost:5277/api/users
+Content-Type: application/json
+
+{
+    "Username": "CodeMaster99",
+    "Age": 21
+}
