@@ -1,0 +1,2 @@
+Hey, Today I learnt I/O in C#
+It was easy Surprisingly!
