@@ -27,3 +27,4 @@
 /Users/mohamedanwershah/Desktop/C#/ASP.NET/RecipeSubmission/obj/Debug/net10.0/RecipeSubmission.genruntimeconfig.cache
 /Users/mohamedanwershah/Desktop/C#/ASP.NET/RecipeSubmission/obj/Debug/net10.0/ref/RecipeSubmission.dll
 /Users/mohamedanwershah/Desktop/C#/ASP.NET/RecipeSubmission/bin/Debug/net10.0/recipes_db.json
+/Users/mohamedanwershah/Desktop/C#/ASP.NET/RecipeSubmission/obj/Debug/net10.0/RecipeSubmission.sourcelink.json
