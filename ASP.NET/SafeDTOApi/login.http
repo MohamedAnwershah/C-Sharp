@@ -1,0 +1,19 @@
+### 1. Get Token
+# @name login
+POST http://localhost:5081/login
+Content-Type: application/json
+
+{
+    "username": "chef",
+    "password": "password123"
+}
+
+### 2. Post Recipe (SECURE)
+POST http://localhost:5081/api/recipes
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+    "recipeName": "Secret Sauce",
+    "expectedCalories": 500
+}

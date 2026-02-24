@@ -54,7 +54,8 @@ class RecipeService(AppDbContext db)
     }
 
     public async Task AddRecipeAsync(RecipeSubmission newRecipe)
-    {
+    {   
+
         _db.Recipes.Add(newRecipe);
         await _db.SaveChangesAsync();
     }
